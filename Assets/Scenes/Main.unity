@@ -163,7 +163,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2342b4daf5e04a241a925e9593a4563f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool: []
+  Pool:
+  - Tag: 0
+    Prefab: {fileID: 7656099617140954774, guid: 28715032db92b744a8e96b5161ec036c,
+      type: 3}
+    Size: 5
+  - Tag: 10
+    Prefab: {fileID: 5893199740330628399, guid: 0e0865df4c258b44aae355574015c698,
+      type: 3}
+    Size: 5
+  - Tag: 20
+    Prefab: {fileID: 7759290838618530551, guid: 17571cfc482d06d4484dac8e9d43514f,
+      type: 3}
+    Size: 5
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0

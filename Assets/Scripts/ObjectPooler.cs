@@ -36,6 +36,12 @@ public class ObjectPooler : MonoBehaviour
             {
                 GameObject obj = Instantiate(pool.Prefab);
                 obj.transform.parent = poolSpecifiMaster.transform;
+
+                if(obj.GetComponent<IPooledObject>()==null)
+                {
+                    obj.AddComponent<PooledObject>();
+                }
+
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -45,20 +51,20 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnFromPool(string tag, Vector3 pos, Quaternion rot)
+    public GameObject SpawnFromPool(PooledObjectType tag, Vector3 pos, Quaternion rot)
     {
-        if (!PoolDictionary.ContainsKey(tag)) { Debug.LogWarning("PoolObjects with Tag " + tag + " doesn't exist .."); return null; }
+        if (!PoolDictionary.ContainsKey(tag.ToString())) { Debug.LogWarning("PoolObjects with Tag " + tag + " doesn't exist .."); return null; }
 
-        GameObject objToSpawn = PoolDictionary[tag].Dequeue();
+        GameObject objToSpawn = PoolDictionary[tag.ToString()].Dequeue();
         objToSpawn.SetActive(true);
         objToSpawn.transform.position = pos;
         objToSpawn.transform.rotation = rot;
 
         IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
 
-        if (iPooledObj != null) iPooledObj.OnObjectSpawn();
+        if (iPooledObj == null) iPooledObj.OnObjectSpawn();
 
-        PoolDictionary[tag].Enqueue(objToSpawn);
+        PoolDictionary[tag.ToString()].Enqueue(objToSpawn);
         return objToSpawn;
     }
 
