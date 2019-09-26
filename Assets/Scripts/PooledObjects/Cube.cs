@@ -18,4 +18,9 @@ public class Cube : PooledObject
     {
         base.OnObjectSpawn();
     }
+
+    public override void AddRandomForce()
+    {
+        base.AddRandomForce();
+    }
 }

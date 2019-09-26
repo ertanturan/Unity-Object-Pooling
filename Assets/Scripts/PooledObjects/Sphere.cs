@@ -6,13 +6,23 @@ public class Sphere : PooledObject
 {
     public PooledObjectType Type;
 
-    public virtual void Start()
+    public override void Init()
     {
-        
+        base.Init();
     }
 
-    public virtual void Update()
+    public override void OnObjectSpawn()
     {
-        
+        base.OnObjectSpawn();
+    }
+
+    public override void OnObjectDespawn()
+    {
+        base.OnObjectDespawn();
+    }
+
+    public override void AddRandomForce()
+    {
+        base.AddRandomForce();
     }
 }
