@@ -5,6 +5,7 @@ using UnityEngine;
 public class PooledObject : MonoBehaviour,IPooledObject
 {
     private Rigidbody _rb;
+
     public virtual void OnObjectSpawn()
     {
         _rb.velocity = Vector3.zero;
