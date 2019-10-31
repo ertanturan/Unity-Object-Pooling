@@ -65,7 +65,6 @@ public class ObjectPooler : MonoBehaviour
 
         GameObject objToSpawn;
 
-
         if(PoolDictionary[tag].Count!=0)
         {
             objToSpawn = PoolDictionary[tag].Peek();
@@ -83,13 +82,6 @@ public class ObjectPooler : MonoBehaviour
         {
             objToSpawn = ExpandPool(tag, pos, rot);
         }
-
-
-
-
-
-
-        Debug.Log(PoolDictionary[tag].Count);
 
         return objToSpawn;
     }
@@ -125,8 +117,6 @@ public class ObjectPooler : MonoBehaviour
         Pool[index].Size++;
 
         return temp;
-        //Pool.Add();
-
     }
 
 }
