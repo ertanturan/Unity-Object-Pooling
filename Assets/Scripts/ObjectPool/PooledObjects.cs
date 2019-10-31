@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public struct PoolObjects
+public class PoolObjects
 {
     public PooledObjectType Tag;
     public GameObject Prefab;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Sphere : PooledObject
 {
-    public PooledObjectType Type;
 
     public override void Init()
     {

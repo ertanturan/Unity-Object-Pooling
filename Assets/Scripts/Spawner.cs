@@ -22,10 +22,15 @@ public class Spawner : MonoBehaviour
         }
         else
         {
+
+
             GameObject obj = ObjectPooler.Instance.SpawnFromPool(Type, transform.position, Random.rotation);
+
             obj.GetComponent<IPooledObject>().Init();
             obj.GetComponent<IPooledObject>().OnObjectSpawn();
+
             _timer = SpawnRate;
+
         }
     }
 }
