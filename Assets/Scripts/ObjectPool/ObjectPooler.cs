@@ -61,7 +61,7 @@ public class ObjectPooler : MonoBehaviour
         objToSpawn.transform.rotation = rot;
 
         IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
-
+        iPooledObj.Init();
         iPooledObj.OnObjectSpawn();
 
         PoolDictionary[tag.ToString()].Enqueue(objToSpawn);
