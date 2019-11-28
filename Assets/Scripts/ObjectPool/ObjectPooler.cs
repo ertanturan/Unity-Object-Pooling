@@ -42,7 +42,8 @@ public class ObjectPooler : MonoBehaviour
 
                 if (obj.GetComponent<IPooledObject>() == null)
                 {
-                    obj.AddComponent<PooledObject>();
+                    PooledObject temp = obj.AddComponent<PooledObject>();
+                    temp.Type = Pool[j].Tag;
                 }
 
                 obj.SetActive(false);
