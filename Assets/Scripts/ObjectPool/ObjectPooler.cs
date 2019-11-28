@@ -108,6 +108,12 @@ public class ObjectPooler : MonoBehaviour
         temp.transform.position = pos;
         temp.transform.rotation = rot;
 
+        if (temp.GetComponent<IPooledObject>() == null)
+        {
+            PooledObject tempPool = temp.AddComponent<PooledObject>();
+            tempPool.Type = tag;
+        }
+
         IPooledObject iPooledObj = temp.GetComponent<IPooledObject>();
         iPooledObj.Init();
         iPooledObj.OnObjectSpawn();
