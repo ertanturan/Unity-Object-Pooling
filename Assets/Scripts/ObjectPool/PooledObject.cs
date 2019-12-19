@@ -44,6 +44,9 @@ public class PooledObject : MonoBehaviour, IPooledObject
 
     private void Update()
     {
+        //The timer stands for only demostration reasons .
+        //Remove it or comment it than you can despawn your objects whenever you want !.
+
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
