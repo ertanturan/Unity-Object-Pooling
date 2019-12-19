@@ -28,7 +28,7 @@ public class PooledObject : MonoBehaviour, IPooledObject
     {
         _rb = GetComponent<Rigidbody>();
         AddRandomForce();
-        _timer = 3f;
+        _timer = 10f;
     }
 
     public virtual void AddRandomForce()
