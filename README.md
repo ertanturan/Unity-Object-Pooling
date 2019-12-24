@@ -13,9 +13,6 @@ This pool creates objects that you defined on start and creates additionally if 
 2. Download the lates release of the package.
 3. Import it to your unity project.
 
-## Installation
-
-
 ## Usage
 
 1. Head to your hierarchy >> Right Click >> Create Empty
