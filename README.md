@@ -15,13 +15,13 @@ This pool creates objects that you defined on start and creates additionally if 
 
 ## Usage
 
-1. Head to your hierarchy >> Right Click >> Create Empty
+1. Head to your `hierarchy >> Right Click >> Create Empty`
 2. Add Component >> Object Pooler >> Set size that you wish to add to your project.
 3. Create Script which inherits from PooledObject Class 
 
 `` public Class ExampleClass : PooledObject``
 
-4. Add a type to 'enum PooledObjectType' (Can be found under Assets/Scripts/ObjectPool/PoolderObjectType.cs)
+4. Add a type to `enum PooledObjectType` (Can be found under `Assets/Scripts/ObjectPool/PoolderObjectType.cs`)
 5. Retrun to the game object you created on hierarchy  drag and drop your prefab to Prefab property on objectpooler's pool . Set the tag you wrote on step 4. set size (How many object you want to create on beginning).
 
 
