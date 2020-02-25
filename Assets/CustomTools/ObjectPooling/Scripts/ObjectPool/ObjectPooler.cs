@@ -120,6 +120,7 @@ public class ObjectPooler : MonoBehaviour
 
 
         PoolDictionary[tag].Enqueue(temp);
+        PoolDictionary[tag].Dequeue();
 
         Pool[index].Size++;
 
