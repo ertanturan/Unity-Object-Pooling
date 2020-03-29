@@ -23,10 +23,10 @@ This pool creates objects that you defined on start and creates additionally if 
 
 ### To Spawn and Despawn
 
+#### Spawn
 `` ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , transform.position, Random.rotation);  ``
-
-Attention ! : Despawn should be called from the pooled object .
-`` ObjectPooler.Instance.Despawn(Type,gameObject); ``
+#### Despawn
+`` ObjectPooler.Instance.Despawn(gameObject); ``
 
 
 ## Contributing
