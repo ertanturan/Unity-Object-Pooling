@@ -92,11 +92,19 @@ public class ObjectPooler : MonoBehaviour
     public void Despawn(GameObject obj)
     {
         PooledObjectType tag = obj.GetComponent<IPooledObject>().PoolType;
-        PoolDictionary[tag].Enqueue(obj);
 
-        IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
-        if (iPooledObj != null) iPooledObj.OnObjectDespawn();
-        obj.SetActive(false);
+        if (tag != null)
+        {
+            PoolDictionary[tag].Enqueue(obj);
+
+            IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
+            if (iPooledObj != null) iPooledObj.OnObjectDespawn();
+            obj.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Trying to despawn object which is not pooled !");
+        }
 
     }
 
