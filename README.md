@@ -1,9 +1,5 @@
 # Runtime-extendible Object-pooler within unity
 
-You may have made games in the past that created and destroyed a lot of items (such as bullets or enemies).
-What you may not have known is that the act of instantiating and destroying are inefficient and can slow your projects down.
-This is where Object-pooling comes in . This project contains fully finished example of a object-pooler . 
-
 This pool creates objects that you defined on start and creates additionally if more spawn request comes to the pool than pools capacity and manages newly added pool objects too ! .
 
 
@@ -32,9 +28,6 @@ This pool creates objects that you defined on start and creates additionally if 
 Attention ! : Despawn should be called from the pooled object .
 `` ObjectPooler.Instance.Despawn(Type,gameObject); ``
 
-## Demo Project
-
-Demo project can be found under 'Assets/Scenes' folder named ' Main '
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
