@@ -89,9 +89,9 @@ public class ObjectPooler : MonoBehaviour
         return objToSpawn;
     }
 
-    public void Despawn(PooledObjectType tag, GameObject obj)
+    public void Despawn(GameObject obj)
     {
-
+        PooledObjectType tag = obj.GetComponent<IPooledObject>().PoolType;
         PoolDictionary[tag].Enqueue(obj);
 
         IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
