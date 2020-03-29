@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
@@ -39,12 +38,14 @@ public class ObjectPooler : MonoBehaviour
             {
                 GameObject obj = Instantiate(Pool[j].Prefab);
                 obj.transform.parent = poolSpecifiMaster.transform;
-
-                if (obj.GetComponent<IPooledObject>() == null)
+                IPooledObject iPool = obj.GetComponent<IPooledObject>();
+                if (iPool == null)
                 {
                     PooledObject temp = obj.AddComponent<PooledObject>();
-                    temp.Type = Pool[j].Tag;
+                    iPool = temp;
                 }
+                iPool.PoolType = Pool[j].Tag;
+
 
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
@@ -66,7 +67,7 @@ public class ObjectPooler : MonoBehaviour
 
         GameObject objToSpawn;
 
-        if(PoolDictionary[tag].Count!=0)
+        if (PoolDictionary[tag].Count != 0)
         {
             objToSpawn = PoolDictionary[tag].Peek();
             objToSpawn.SetActive(true);
@@ -74,6 +75,7 @@ public class ObjectPooler : MonoBehaviour
             objToSpawn.transform.rotation = rot;
 
             IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
+
             iPooledObj.Init();
             iPooledObj.OnObjectSpawn();
 
@@ -87,7 +89,7 @@ public class ObjectPooler : MonoBehaviour
         return objToSpawn;
     }
 
-    public void Despawn(PooledObjectType tag,GameObject obj)
+    public void Despawn(PooledObjectType tag, GameObject obj)
     {
 
         PoolDictionary[tag].Enqueue(obj);
@@ -108,11 +110,14 @@ public class ObjectPooler : MonoBehaviour
         temp.transform.position = pos;
         temp.transform.rotation = rot;
 
-        if (temp.GetComponent<IPooledObject>() == null)
+        IPooledObject iPool = temp.GetComponent<IPooledObject>();
+        if (iPool == null)
         {
             PooledObject tempPool = temp.AddComponent<PooledObject>();
-            tempPool.Type = tag;
+            iPool = tempPool;
         }
+
+        iPool.PoolType = tag;
 
         IPooledObject iPooledObj = temp.GetComponent<IPooledObject>();
         iPooledObj.Init();

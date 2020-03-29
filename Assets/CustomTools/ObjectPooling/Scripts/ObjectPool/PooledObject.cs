@@ -4,7 +4,7 @@ public class PooledObject : MonoBehaviour, IPooledObject
 {
 
 
-    public PooledObjectType Type;
+    public PooledObjectType PoolType { get; set; }
 
 
 
@@ -25,7 +25,7 @@ public class PooledObject : MonoBehaviour, IPooledObject
 
     public void Despawn()
     {
-        ObjectPooler.Instance.Despawn(Type, gameObject);
+        ObjectPooler.Instance.Despawn(PoolType, gameObject);
     }
 
 
