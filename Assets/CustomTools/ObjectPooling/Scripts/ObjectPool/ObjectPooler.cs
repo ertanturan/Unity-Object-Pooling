@@ -56,7 +56,7 @@ public class ObjectPooler : MonoBehaviour
 
     }
 
-    public GameObject SpawnFromPool(PooledObjectType tag, Vector3 pos, Quaternion rot)
+    public GameObject SpawnFromPool(PooledObjectType tag, Vector3 pos, Quaternion rot, GameObject parent = null)
     {
 
         if (!PoolDictionary.ContainsKey(tag))
@@ -84,6 +84,11 @@ public class ObjectPooler : MonoBehaviour
         else
         {
             objToSpawn = ExpandPool(tag, pos, rot);
+        }
+
+        if (parent)
+        {
+            objToSpawn.transform.SetParent(parent.transform);
         }
 
         return objToSpawn;
