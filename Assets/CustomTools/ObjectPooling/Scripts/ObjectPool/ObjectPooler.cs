@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPooler : SceneSingleton<ObjectPooler>
 {
 
     public Dictionary<PooledObjectType, Queue<GameObject>> PoolDictionary;
@@ -9,13 +9,6 @@ public class ObjectPooler : MonoBehaviour
 
     private Dictionary<PooledObjectType, int> _poolIndexes = new Dictionary<PooledObjectType, int>();
     private Dictionary<PooledObjectType, Transform> _poolMasters = new Dictionary<PooledObjectType, Transform>();
-
-    public static ObjectPooler Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     private void Start()
     {
@@ -98,17 +91,21 @@ public class ObjectPooler : MonoBehaviour
     {
         PooledObjectType tag = obj.GetComponent<IPooledObject>().PoolType;
 
-        if (tag != null)
+        if (tag != null && PoolDictionary.ContainsKey(tag))
         {
+
+
             PoolDictionary[tag].Enqueue(obj);
 
             IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
             if (iPooledObj != null) iPooledObj.OnObjectDespawn();
             obj.SetActive(false);
+
+
         }
         else
         {
-            Debug.LogWarning("Trying to despawn object which is not pooled !");
+            Debug.LogError("Trying to despawn object which is not pooled !");
         }
 
     }
