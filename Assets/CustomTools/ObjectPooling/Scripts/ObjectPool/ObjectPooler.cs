@@ -98,7 +98,11 @@ public class ObjectPooler : SceneSingleton<ObjectPooler>
             PoolDictionary[tag].Enqueue(obj);
 
             IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
-            if (iPooledObj != null) iPooledObj.OnObjectDespawn();
+            if (iPooledObj != null)
+            {
+                iPooledObj.OnObjectDespawn();
+            }
+            obj.transform.SetParent(_poolMasters[tag]);
             obj.SetActive(false);
 
 
