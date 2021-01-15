@@ -1,5 +1,5 @@
 {
-    "name": "Custom Tools ObjectPool",
+    "name": "ObjectPool",
     "references": [
         "GUID:1dae110e7a69d294f82f2ea3fcae792f"
     ],
