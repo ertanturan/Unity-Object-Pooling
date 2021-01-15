@@ -1,6 +1,6 @@
 ﻿namespace CustomTools.ObjectPooling.Scripts.ObjectPool
 {
-    public interface IObjectPoolInitiazible
+    public interface IObjectPoolInitializable
     {
         void Init();
     }

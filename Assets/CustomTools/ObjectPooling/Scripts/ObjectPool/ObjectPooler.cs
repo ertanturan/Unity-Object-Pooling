@@ -67,9 +67,9 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
                 objToSpawn.transform.rotation = rot;
 
                 IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
-                IObjectPoolInitiazible iInitiazible = objToSpawn.GetComponent<IObjectPoolInitiazible>();
+                IObjectPoolInitializable iInitializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
 
-                iInitiazible?.Init();
+                iInitializable?.Init();
 
                 // iPooledObj.Init(iPooledObj.ObjectPooler);
                 iPooledObj.OnObjectSpawn();
@@ -135,9 +135,9 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
             iPool.PoolType = pooledObjectType;
 
             IPooledObject iPooledObj = objToAdd.GetComponent<IPooledObject>();
-            IObjectPoolInitiazible iInitiazible = objToAdd.GetComponent<IObjectPoolInitiazible>();
+            IObjectPoolInitializable iInitializable = objToAdd.GetComponent<IObjectPoolInitializable>();
 
-            iInitiazible?.Init();
+            iInitializable?.Init();
             
             iPooledObj.OnObjectSpawn();
 
