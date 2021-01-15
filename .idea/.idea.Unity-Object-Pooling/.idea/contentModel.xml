@@ -7,6 +7,9 @@
       <e p="Assets" t="Include">
         <e p="CustomTools" t="Include">
           <e p="ObjectPooling" t="Include">
+            <e p="DEMO" t="Include">
+              <e p="DemoSceneInstaller.cs" t="Include" />
+            </e>
             <e p="Scripts" t="Include">
               <e p="ObjectPool" t="Include">
                 <e p="IPooledObject.cs" t="Include" />
@@ -370,6 +373,7 @@
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="ObjectPool.csproj" t="IncludeRecursive" />
+      <e p="ObjectPoolingDemo.csproj" t="IncludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
       <e p="Unity-Object-Pooling.sln" t="IncludeFlat" />

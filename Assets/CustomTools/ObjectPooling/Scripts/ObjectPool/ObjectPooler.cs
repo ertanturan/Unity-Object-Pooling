@@ -11,7 +11,7 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
         private Dictionary<PooledObjectType, int> _poolIndexes = new Dictionary<PooledObjectType, int>();
         private Dictionary<PooledObjectType, Transform> _poolMasters = new Dictionary<PooledObjectType, Transform>();
 
-        private void Awake()
+        private void Start()
         {
             _poolDictionary = new Dictionary<PooledObjectType, Queue<GameObject>>();
 

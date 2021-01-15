@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/riderModule.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/Sıngleton.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/Sıngleton/SceneSingleton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/Sıngleton/SceneSingleton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/Sıngleton/Singleton.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/Sıngleton/Singleton.asmdef.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,11 +15,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" />
-      <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" />
       <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" />
+      <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" />
+      <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1n7nQBBvwwx67fD1EjwtRak8jlq" />
@@ -39,6 +33,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -73,7 +68,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610749981623</updated>
-      <workItem from="1610749987410" duration="1021000" />
+      <workItem from="1610749987410" duration="2719000" />
     </task>
     <servers />
   </component>

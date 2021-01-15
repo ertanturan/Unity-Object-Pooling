@@ -4,16 +4,17 @@ using Zenject;
 
 public class PooledObject : MonoBehaviour, IPooledObject
 {
-    private ObjectPooler _objectPooler;
-
 
     public PooledObjectType PoolType { get; set; }
-    public ObjectPooler ObjectPooler { get; set; }
+    public ObjectPooler ObjectPooler;
 
-
+    [Inject]
     public virtual void Construct(ObjectPooler pooler)
     {
-        _objectPooler = pooler;
+        Debug.Log("construct");
+        
+        Debug.Log(pooler);
+        ObjectPooler = pooler;
     }
     
     public virtual void OnObjectSpawn()
@@ -26,12 +27,9 @@ public class PooledObject : MonoBehaviour, IPooledObject
 
     }
 
-    // [Inject]
-    
-
     public void Despawn()
     {
-        _objectPooler.Despawn(gameObject);
+        ObjectPooler.Despawn(gameObject);
     }
 
 
