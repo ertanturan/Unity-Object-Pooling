@@ -1,0 +1,15 @@
+{
+    "name": "Custom Tools ObjectPool",
+    "references": [
+        "GUID:1dae110e7a69d294f82f2ea3fcae792f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
