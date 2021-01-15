@@ -1,149 +1,148 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler : SceneSingleton<ObjectPooler>
+namespace CustomTools.ObjectPooling.Scripts.ObjectPool
 {
-
-    public Dictionary<PooledObjectType, Queue<GameObject>> PoolDictionary;
-    public List<PoolObjects> Pool;
-
-    private Dictionary<PooledObjectType, int> _poolIndexes = new Dictionary<PooledObjectType, int>();
-    private Dictionary<PooledObjectType, Transform> _poolMasters = new Dictionary<PooledObjectType, Transform>();
-
-    private void Start()
+    public class ObjectPooler : MonoBehaviour
     {
-        PoolDictionary = new Dictionary<PooledObjectType, Queue<GameObject>>();
+        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
+        [SerializeField] private List<PoolObjects> _pool;
 
-        GameObject master = new GameObject("Pool");
+        private Dictionary<PooledObjectType, int> _poolIndexes = new Dictionary<PooledObjectType, int>();
+        private Dictionary<PooledObjectType, Transform> _poolMasters = new Dictionary<PooledObjectType, Transform>();
 
-        for (int j = 0; j < Pool.Count; j++)
+        private void Awake()
         {
-            GameObject poolSpecifiMaster = new GameObject(Pool[j].Tag.ToString());
-            poolSpecifiMaster.transform.parent = master.transform;
+            _poolDictionary = new Dictionary<PooledObjectType, Queue<GameObject>>();
 
-            Queue<GameObject> objectPool = new Queue<GameObject>();
-            _poolIndexes.Add(Pool[j].Tag, j);
+            GameObject master = new GameObject("Pool");
 
-            _poolMasters.Add(Pool[j].Tag, poolSpecifiMaster.transform);
-
-
-            for (int i = 0; i < Pool[j].Size; i++)
+            for (int j = 0; j < _pool.Count; j++)
             {
-                GameObject obj = Instantiate(Pool[j].Prefab);
-                obj.transform.parent = poolSpecifiMaster.transform;
-                IPooledObject iPool = obj.GetComponent<IPooledObject>();
-                if (iPool == null)
+                GameObject poolSpecifiMaster = new GameObject(_pool[j].Tag.ToString());
+                poolSpecifiMaster.transform.parent = master.transform;
+
+                Queue<GameObject> objectPool = new Queue<GameObject>();
+                _poolIndexes.Add(_pool[j].Tag, j);
+
+                _poolMasters.Add(_pool[j].Tag, poolSpecifiMaster.transform);
+
+                for (int i = 0; i < _pool[j].Size; i++)
                 {
-                    PooledObject temp = obj.AddComponent<PooledObject>();
-                    iPool = temp;
+                    GameObject obj = Instantiate(_pool[j].Prefab, poolSpecifiMaster.transform, true);
+                    IPooledObject iPool = obj.GetComponent<IPooledObject>();
+                    if (iPool == null)
+                    {
+                        PooledObject temp = obj.AddComponent<PooledObject>();
+                        iPool = temp;
+                    }
+                    iPool.PoolType = _pool[j].Tag;
+
+
+                    obj.SetActive(false);
+                    objectPool.Enqueue(obj);
                 }
-                iPool.PoolType = Pool[j].Tag;
 
-
-                obj.SetActive(false);
-                objectPool.Enqueue(obj);
+                _poolDictionary.Add(_pool[j].Tag, objectPool);
             }
 
-            PoolDictionary.Add(Pool[j].Tag, objectPool);
         }
 
-    }
-
-    public GameObject SpawnFromPool(PooledObjectType tag, Vector3 pos, Quaternion rot, GameObject parent = null)
-    {
-
-        if (!PoolDictionary.ContainsKey(tag))
+        public GameObject SpawnFromPool(PooledObjectType pooledObjectType, Vector3 pos, Quaternion rot, GameObject parent = null)
         {
-            Debug.LogWarning("PoolObjects with Tag " + tag + " doesn't exist ..");
-            return null;
+
+            if (!_poolDictionary.ContainsKey(pooledObjectType))
+            {
+                Debug.LogWarning("PoolObjects with Tag " + pooledObjectType + " doesn't exist ..");
+                return null;
+            }
+
+            GameObject objToSpawn;
+
+            if (_poolDictionary[pooledObjectType].Count != 0)
+            {
+                objToSpawn = _poolDictionary[pooledObjectType].Peek();
+                objToSpawn.SetActive(true);
+                objToSpawn.transform.position = pos;
+                objToSpawn.transform.rotation = rot;
+
+                IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
+
+                // iPooledObj.Init(iPooledObj.ObjectPooler);
+                iPooledObj.OnObjectSpawn();
+
+                _poolDictionary[pooledObjectType].Dequeue();
+            }
+            else
+            {
+                objToSpawn = ExpandPool(pooledObjectType, pos, rot);
+            }
+
+            if (parent)
+            {
+                objToSpawn.transform.SetParent(parent.transform);
+            }
+
+            return objToSpawn;
         }
 
-        GameObject objToSpawn;
-
-        if (PoolDictionary[tag].Count != 0)
+        public void Despawn(GameObject obj)
         {
-            objToSpawn = PoolDictionary[tag].Peek();
-            objToSpawn.SetActive(true);
-            objToSpawn.transform.position = pos;
-            objToSpawn.transform.rotation = rot;
+            PooledObjectType pooledObjectType = obj.GetComponent<IPooledObject>().PoolType;
 
-            IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
+            if (pooledObjectType != null && _poolDictionary.ContainsKey(pooledObjectType))
+            {
 
-            iPooledObj.Init();
+
+                _poolDictionary[pooledObjectType].Enqueue(obj);
+
+                IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
+                if (iPooledObj != null)
+                {
+                    iPooledObj.OnObjectDespawn();
+                }
+                obj.transform.SetParent(_poolMasters[pooledObjectType]);
+                obj.SetActive(false);
+
+
+            }
+            else
+            {
+                Debug.LogError("Trying to despawn object which is not pooled !");
+            }
+
+        }
+
+        private GameObject ExpandPool(PooledObjectType pooledObjectType, Vector3 pos, Quaternion rot)
+        {
+            int index = _poolIndexes[pooledObjectType];
+            GameObject temp = Instantiate(_pool[index].Prefab, _poolMasters[pooledObjectType], true);
+            temp.SetActive(true);
+
+            temp.transform.position = pos;
+            temp.transform.rotation = rot;
+
+            IPooledObject iPool = temp.GetComponent<IPooledObject>();
+            if (iPool == null)
+            {
+                PooledObject tempPool = temp.AddComponent<PooledObject>();
+                iPool = tempPool;
+            }
+
+            iPool.PoolType = pooledObjectType;
+
+            IPooledObject iPooledObj = temp.GetComponent<IPooledObject>();
+            // iPooledObj.Init();
             iPooledObj.OnObjectSpawn();
 
-            PoolDictionary[tag].Dequeue();
-        }
-        else
-        {
-            objToSpawn = ExpandPool(tag, pos, rot);
-        }
 
-        if (parent)
-        {
-            objToSpawn.transform.SetParent(parent.transform);
-        }
+            _poolDictionary[pooledObjectType].Enqueue(temp);
+            _poolDictionary[pooledObjectType].Dequeue();
 
-        return objToSpawn;
-    }
+            _pool[index].Size++;
 
-    public void Despawn(GameObject obj)
-    {
-        PooledObjectType tag = obj.GetComponent<IPooledObject>().PoolType;
-
-        if (tag != null && PoolDictionary.ContainsKey(tag))
-        {
-
-
-            PoolDictionary[tag].Enqueue(obj);
-
-            IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
-            if (iPooledObj != null)
-            {
-                iPooledObj.OnObjectDespawn();
-            }
-            obj.transform.SetParent(_poolMasters[tag]);
-            obj.SetActive(false);
-
-
-        }
-        else
-        {
-            Debug.LogError("Trying to despawn object which is not pooled !");
+            return temp;
         }
 
     }
-
-    private GameObject ExpandPool(PooledObjectType tag, Vector3 pos, Quaternion rot)
-    {
-        int index = _poolIndexes[tag];
-        GameObject temp = Instantiate(Pool[index].Prefab);
-        temp.SetActive(true);
-        temp.transform.SetParent(_poolMasters[tag]);
-
-        temp.transform.position = pos;
-        temp.transform.rotation = rot;
-
-        IPooledObject iPool = temp.GetComponent<IPooledObject>();
-        if (iPool == null)
-        {
-            PooledObject tempPool = temp.AddComponent<PooledObject>();
-            iPool = tempPool;
-        }
-
-        iPool.PoolType = tag;
-
-        IPooledObject iPooledObj = temp.GetComponent<IPooledObject>();
-        iPooledObj.Init();
-        iPooledObj.OnObjectSpawn();
-
-
-        PoolDictionary[tag].Enqueue(temp);
-        PoolDictionary[tag].Dequeue();
-
-        Pool[index].Size++;
-
-        return temp;
-    }
-
 }
