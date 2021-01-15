@@ -8,11 +8,6 @@ public class DemoSceneInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-
         Container.Bind<ObjectPooler>().FromComponentOn(_objectPool).AsSingle().NonLazy();
-
-
-        // Container.Bind<ObjectPooler>().WhenNotInjectedInto<IPooledObject>().NonLazy();
-
     }
 }

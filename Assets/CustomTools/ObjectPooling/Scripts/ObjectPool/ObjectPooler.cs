@@ -67,6 +67,9 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
                 objToSpawn.transform.rotation = rot;
 
                 IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
+                IObjectPoolInitiazible iInitiazible = objToSpawn.GetComponent<IObjectPoolInitiazible>();
+
+                iInitiazible?.Init();
 
                 // iPooledObj.Init(iPooledObj.ObjectPooler);
                 iPooledObj.OnObjectSpawn();
@@ -116,32 +119,35 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
         private GameObject ExpandPool(PooledObjectType pooledObjectType, Vector3 pos, Quaternion rot)
         {
             int index = _poolIndexes[pooledObjectType];
-            GameObject temp = Instantiate(_pool[index].Prefab, _poolMasters[pooledObjectType], true);
-            temp.SetActive(true);
+            GameObject objToAdd = Instantiate(_pool[index].Prefab, _poolMasters[pooledObjectType], true);
+            objToAdd.SetActive(true);
 
-            temp.transform.position = pos;
-            temp.transform.rotation = rot;
+            objToAdd.transform.position = pos;
+            objToAdd.transform.rotation = rot;
 
-            IPooledObject iPool = temp.GetComponent<IPooledObject>();
+            IPooledObject iPool = objToAdd.GetComponent<IPooledObject>();
             if (iPool == null)
             {
-                PooledObject tempPool = temp.AddComponent<PooledObject>();
+                PooledObject tempPool = objToAdd.AddComponent<PooledObject>();
                 iPool = tempPool;
             }
 
             iPool.PoolType = pooledObjectType;
 
-            IPooledObject iPooledObj = temp.GetComponent<IPooledObject>();
-            // iPooledObj.Init();
+            IPooledObject iPooledObj = objToAdd.GetComponent<IPooledObject>();
+            IObjectPoolInitiazible iInitiazible = objToAdd.GetComponent<IObjectPoolInitiazible>();
+
+            iInitiazible?.Init();
+            
             iPooledObj.OnObjectSpawn();
 
 
-            _poolDictionary[pooledObjectType].Enqueue(temp);
+            _poolDictionary[pooledObjectType].Enqueue(objToAdd);
             _poolDictionary[pooledObjectType].Dequeue();
 
             _pool[index].Size++;
 
-            return temp;
+            return objToAdd;
         }
 
     }

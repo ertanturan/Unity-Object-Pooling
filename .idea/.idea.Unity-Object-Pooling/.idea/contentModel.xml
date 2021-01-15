@@ -12,6 +12,7 @@
             </e>
             <e p="Scripts" t="Include">
               <e p="ObjectPool" t="Include">
+                <e p="IObjectPoolInitiazible.cs" t="Include" />
                 <e p="IPooledObject.cs" t="Include" />
                 <e p="ObjectPooler.cs" t="Include" />
                 <e p="PooledObject.cs" t="Include" />
