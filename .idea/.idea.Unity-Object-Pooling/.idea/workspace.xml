@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +31,9 @@
       <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IObjectPoolInitiazible.cs" />
       <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" />
       <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectType.cs" />
+      <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" />
       <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" />
-      <option value="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1n7nQBBvwwx67fD1EjwtRak8jlq" />
@@ -84,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1610749981623</updated>
       <workItem from="1610749987410" duration="3472000" />
-      <workItem from="1610827375570" duration="1231000" />
+      <workItem from="1610827375570" duration="2091000" />
     </task>
     <servers />
   </component>
