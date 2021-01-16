@@ -6,7 +6,7 @@ public class PooledObject : MonoBehaviour, IPooledObject
 {
 
     public PooledObjectType PoolType { get; set; }
-    public ObjectPooler ObjectPooler;
+    public ObjectPooler Pooler { get; private set; }
 
     [Inject]
     public virtual void Construct(ObjectPooler pooler)
@@ -14,7 +14,7 @@ public class PooledObject : MonoBehaviour, IPooledObject
         Debug.Log("construct");
         
         Debug.Log(pooler);
-        ObjectPooler = pooler;
+        Pooler = pooler;
     }
     
     public virtual void OnObjectSpawn()
@@ -29,7 +29,7 @@ public class PooledObject : MonoBehaviour, IPooledObject
 
     public void Despawn()
     {
-        ObjectPooler.Despawn(gameObject);
+        Pooler.Despawn(gameObject);
     }
 
 
