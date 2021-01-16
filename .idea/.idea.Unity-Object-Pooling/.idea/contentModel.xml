@@ -9,6 +9,7 @@
           <e p="ObjectPooling" t="Include">
             <e p="DEMO" t="Include">
               <e p="DemoSceneInstaller.cs" t="Include" />
+              <e p="PoolSpawner.cs" t="Include" />
             </e>
             <e p="Scripts" t="Include">
               <e p="ObjectPool" t="Include">
