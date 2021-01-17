@@ -34,5 +34,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## Acknowledgement/Courtesy
+
+This project uses Zenject framework for Dependency Injection. Courtesy to Modesttree. [REFERENCE LINK](https://github.com/modesttree/Zenject)
+
 
 # ENJOY !
