@@ -4,7 +4,7 @@ This pool creates objects that you defined on start and creates additionally if 
 
 ## Pre-requisities
 
-- Zenject IOC (FOUND IT [HERE](https://github.com/modesttree/Zenject)  )
+- Zenject IOC (Find [HERE](https://github.com/modesttree/Zenject)  )
 
 ## Import
 
