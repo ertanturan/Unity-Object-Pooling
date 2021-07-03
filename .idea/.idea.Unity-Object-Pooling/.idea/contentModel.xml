@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\ASUS\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\ASUS\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Unity-Object-Pooling.-245749482.00" t="ExcludeRecursive" />
-    <e p="C:\Users\ASUS\Desktop\Unity\Unity-Object-Pooling" t="IncludeRecursive">
+    <e p="C:\Users\Ertan\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ertan\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Unity-Object-Pooling.541610382.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Ertan\Desktop\Unity\Unity-Object-Pooling" t="IncludeRecursive">
       <e p="Assets" t="Include">
         <e p="CustomTools" t="Include">
           <e p="ObjectPooling" t="Include">

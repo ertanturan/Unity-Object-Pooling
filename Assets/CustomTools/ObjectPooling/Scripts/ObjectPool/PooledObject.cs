@@ -11,9 +11,6 @@ public class PooledObject : MonoBehaviour, IPooledObject
     [Inject]
     public virtual void Construct(ObjectPooler pooler)
     {
-        Debug.Log("construct");
-        
-        Debug.Log(pooler);
         Pooler = pooler;
     }
     
