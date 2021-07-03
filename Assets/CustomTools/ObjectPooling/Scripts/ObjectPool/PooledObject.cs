@@ -1,36 +1,35 @@
-﻿using CustomTools.ObjectPooling.Scripts.ObjectPool;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-public class PooledObject : MonoBehaviour, IPooledObject
+namespace CustomTools.ObjectPooling.Scripts.ObjectPool
 {
-
-    public PooledObjectType PoolType { get; set; }
-    public ObjectPooler Pooler { get; private set; }
-
-    [Inject]
-    public virtual void Construct(ObjectPooler pooler)
+    public class PooledObject : MonoBehaviour, IPooledObject
     {
-        Debug.Log("construct");
-        
-        Debug.Log(pooler);
-        Pooler = pooler;
-    }
+
+        public PooledObjectType PoolType { get; set; }
+        public ObjectPooler Pooler { get; private set; }
+
+        [Inject]
+        public virtual void Construct(ObjectPooler pooler)
+        {
+            Pooler = pooler;
+        }
     
-    public virtual void OnObjectSpawn()
-    {
+        public virtual void OnObjectSpawn()
+        {
+
+        }
+
+        public virtual void OnObjectDespawn()
+        {
+
+        }
+
+        public void Despawn()
+        {
+            Pooler.Despawn(gameObject);
+        }
+
 
     }
-
-    public virtual void OnObjectDespawn()
-    {
-
-    }
-
-    public void Despawn()
-    {
-        Pooler.Despawn(gameObject);
-    }
-
-
 }
