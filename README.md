@@ -18,7 +18,9 @@ This pool creates objects that you defined on start and creates additionally if 
 2. Add Component >> Object Pooler >> Set size that you wish to add to your project.
 3. Create Script which inherits from IPooledObject interface 
 
-`` public Class ExampleClass : MonoBehaviour,IPooledObject``
+```csharp 
+public Class ExampleClass : MonoBehaviour,IPooledObject 
+```
 
 4. Add a new type to `enum PooledObjectType` (Can be found under `Assets/Scripts/ObjectPool/PooledObjectType.cs`)
 5. Retrun to the game object you created on hierarchy  drag and drop your prefab to Prefab property on objectpooler's pool . Set the tag you wrote on step 4. set size (How many object you want to create on beginning).
