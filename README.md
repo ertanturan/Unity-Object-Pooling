@@ -29,9 +29,14 @@ public Class ExampleClass : MonoBehaviour,IPooledObject
 ### To Spawn and Despawn
 
 #### Spawn
-`` ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , transform.position, Random.rotation);  ``
+```csharp  
+ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , transform.position, Random.rotation);  
+```
 #### Despawn
-`` ObjectPooler.Instance.Despawn(gameObject); ``
+
+```csharp 
+ObjectPooler.Instance.Despawn(gameObject); 
+```
 
 
 ## Contributing
