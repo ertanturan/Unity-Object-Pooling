@@ -2,9 +2,12 @@
 
 This pool creates objects that you defined on start and creates additionally if more spawn request comes to the pool than pools capacity and manages newly added pool objects too ! .
 
-## Pre-requisities
+## Pre-requisities (For Zenject Implemented Version)
 
 - Zenject IOC (Find [HERE](https://github.com/modesttree/Zenject)  )
+
+## Singleton Version (Version Without Zenject)
+[Here](https://github.com/ertanturan/Unity-Object-Pooling/tree/Sprint3-Singleton)
 
 ## Import
 
