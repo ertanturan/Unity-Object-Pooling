@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CustomTools.ObjectPooling.Scripts.ObjectPool
 {
-    public class ObjectPooler : MonoBehaviour
+    public class ObjectPooler : Singleton<ObjectPooler>
     {
         private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
         [SerializeField] private List<PoolObjects> _pool;

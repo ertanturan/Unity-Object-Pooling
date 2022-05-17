@@ -1,7 +1,9 @@
 {
     "name": "ObjectPool",
+    "rootNamespace": "",
     "references": [
-        "GUID:1dae110e7a69d294f82f2ea3fcae792f"
+        "GUID:1dae110e7a69d294f82f2ea3fcae792f",
+        "GUID:2e8f88cef69ef3f4db366d0ad9d6d0df"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
