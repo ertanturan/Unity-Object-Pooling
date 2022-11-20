@@ -1,7 +1,7 @@
-﻿namespace CustomTools.ObjectPooling.Scripts.ObjectPool
+﻿namespace CustomTools.ObjectPooling
 {
     public interface IObjectPoolInitializable
     {
-        void Init();
+        void Init(object sender, PooledObjectInitializationArgs args);
     }
 }

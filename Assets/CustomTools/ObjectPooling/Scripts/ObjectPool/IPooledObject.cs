@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace CustomTools.ObjectPooling.Scripts.ObjectPool
+namespace CustomTools.ObjectPooling
 {
     public interface IPooledObject
     {

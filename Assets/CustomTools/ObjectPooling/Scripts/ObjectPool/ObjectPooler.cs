@@ -1,59 +1,55 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace CustomTools.ObjectPooling.Scripts.ObjectPool
+namespace CustomTools.ObjectPooling
 {
     public class ObjectPooler : MonoBehaviour
     {
-        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
         [SerializeField] private List<PoolObjects> _pool;
 
-        private Dictionary<PooledObjectType, int> _poolIndexes = new Dictionary<PooledObjectType, int>();
-        private Dictionary<PooledObjectType, Transform> _poolMasters = new Dictionary<PooledObjectType, Transform>();
+        private readonly Dictionary<PooledObjectType, int> _poolIndexes = new();
+        private readonly Dictionary<PooledObjectType, Transform> _poolMasters = new();
+        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
 
         private void Start()
         {
             _poolDictionary = new Dictionary<PooledObjectType, Queue<GameObject>>();
 
-            GameObject master = new GameObject("Pool");
+            GameObject master = new("Pool");
 
             for (int j = 0; j < _pool.Count; j++)
             {
-                GameObject poolSpecifiMaster = new GameObject(_pool[j].Tag.ToString());
+                GameObject poolSpecifiMaster = new(_pool[j].Tag.ToString());
                 poolSpecifiMaster.transform.parent = master.transform;
 
-                Queue<GameObject> objectPool = new Queue<GameObject>();
+                Queue<GameObject> objectPool = new();
                 _poolIndexes.Add(_pool[j].Tag, j);
 
                 _poolMasters.Add(_pool[j].Tag, poolSpecifiMaster.transform);
+                _poolDictionary.Add(_pool[j].Tag, objectPool);
 
                 for (int i = 0; i < _pool[j].Size; i++)
                 {
-                    GameObject obj = Instantiate(_pool[j].Prefab, poolSpecifiMaster.transform, true);
-                    IPooledObject iPool = obj.GetComponent<IPooledObject>();
-                    if (iPool == null)
-                    {
-                        PooledObject temp = obj.AddComponent<PooledObject>();
-                        iPool = temp;
-                    }
-
-                    iPool.PoolType = _pool[j].Tag;
-
-
-                    obj.SetActive(false);
-                    objectPool.Enqueue(obj);
+                    AddNewInstanceToObjectPool(_pool[j].Tag);
                 }
-
-                _poolDictionary.Add(_pool[j].Tag, objectPool);
             }
         }
 
-        public GameObject SpawnFromPool(PooledObjectType pooledObjectType, Vector3 pos, Quaternion rot,
-            GameObject parent = null)
+        /// <summary>
+        ///     Spawns a gameobject from pool if there's any. If not, it'll expand the pool size and then spawn.
+        /// </summary>
+        /// <param name="pooledObjectType"></param>
+        /// <param name="position"></param>
+        /// <param name="rotation"></param>
+        /// <param name="parent"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public GameObject SpawnFromPool(PooledObjectType pooledObjectType, Vector3 position, Quaternion rotation,
+            Transform parent = null, PooledObjectInitializationArgs args = null)
         {
             if (!_poolDictionary.ContainsKey(pooledObjectType))
             {
-                Debug.LogWarning("PoolObjects with Tag " + pooledObjectType + " doesn't exist ..");
+                Debug.LogWarning(string.Concat("PoolObjects with Tag ", pooledObjectType, " doesn't exist .."));
                 return null;
             }
 
@@ -63,32 +59,59 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
             {
                 objToSpawn = _poolDictionary[pooledObjectType].Peek();
                 objToSpawn.SetActive(true);
-                objToSpawn.transform.position = pos;
-                objToSpawn.transform.rotation = rot;
+                objToSpawn.transform.position = position;
+                objToSpawn.transform.rotation = rotation;
 
                 IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
+
                 IObjectPoolInitializable iInitializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
 
-                iInitializable?.Init();
+                if (args != null)
+                {
+                    iInitializable?.Init(this, args);
+                }
 
-                // iPooledObj.Init(iPooledObj.ObjectPooler);
                 iPooledObj.OnObjectSpawn();
 
                 _poolDictionary[pooledObjectType].Dequeue();
             }
             else
             {
-                objToSpawn = ExpandPool(pooledObjectType, pos, rot);
+                return ExpandAndSpawnFromPool(pooledObjectType, position, rotation, parent);
             }
 
             if (parent)
             {
-                objToSpawn.transform.SetParent(parent.transform);
+                objToSpawn.transform.SetParent(parent);
             }
 
             return objToSpawn;
         }
 
+        /// <summary>
+        ///     If pool size is not catching up to the spawn calls then this function will be called by "SpawnFromPool" to expand
+        ///     the pool
+        /// </summary>
+        /// <param name="pooledObjectType"></param>
+        /// <param name="position"></param>
+        /// <param name="rotation"></param>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        private GameObject ExpandAndSpawnFromPool(PooledObjectType pooledObjectType, Vector3 position,
+            Quaternion rotation, Transform parent = null)
+        {
+            AddNewInstanceToObjectPool(pooledObjectType);
+
+            int index = _poolIndexes[pooledObjectType];
+
+            _pool[index].Size++;
+            return SpawnFromPool(pooledObjectType, position, rotation, parent);
+        }
+
+        /// <summary>
+        ///     Returns the pooled object back to pool.
+        /// </summary>
+        /// <param name="obj"></param>
         public void Despawn(GameObject obj)
         {
             PooledObjectType pooledObjectType = obj.GetComponent<IPooledObject>().PoolType;
@@ -117,38 +140,32 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
             }
         }
 
-        private GameObject ExpandPool(PooledObjectType pooledObjectType, Vector3 pos, Quaternion rot)
+
+        /// <summary>
+        ///     Creates  a new gameobject and registers it to the pool
+        /// </summary>
+        /// <param name="pooledObjectType"></param>
+        private void AddNewInstanceToObjectPool(PooledObjectType pooledObjectType)
         {
+            Queue<GameObject> objectPool = _poolDictionary[pooledObjectType];
+
+            Transform poolSpecifiMaster = _poolMasters[pooledObjectType];
             int index = _poolIndexes[pooledObjectType];
-            GameObject objToAdd = Instantiate(_pool[index].Prefab, _poolMasters[pooledObjectType], true);
-            objToAdd.SetActive(true);
+            GameObject prefab = _pool[index].Prefab;
 
-            objToAdd.transform.position = pos;
-            objToAdd.transform.rotation = rot;
-
-            IPooledObject iPool = objToAdd.GetComponent<IPooledObject>();
+            GameObject freshGameObject = Instantiate(prefab, poolSpecifiMaster, true);
+            IPooledObject iPool = freshGameObject.GetComponent<IPooledObject>();
             if (iPool == null)
             {
-                PooledObject tempPool = objToAdd.AddComponent<PooledObject>();
-                iPool = tempPool;
+                PooledObject temp = freshGameObject.AddComponent<PooledObject>();
+                iPool = temp;
             }
 
             iPool.PoolType = pooledObjectType;
 
-            IPooledObject iPooledObj = objToAdd.GetComponent<IPooledObject>();
-            IObjectPoolInitializable iInitializable = objToAdd.GetComponent<IObjectPoolInitializable>();
 
-            iInitializable?.Init();
-
-            iPooledObj.OnObjectSpawn();
-
-
-            _poolDictionary[pooledObjectType].Enqueue(objToAdd);
-            _poolDictionary[pooledObjectType].Dequeue();
-
-            _pool[index].Size++;
-
-            return objToAdd;
+            freshGameObject.SetActive(false);
+            objectPool.Enqueue(freshGameObject);
         }
     }
 }

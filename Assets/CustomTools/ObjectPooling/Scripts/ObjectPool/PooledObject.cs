@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace CustomTools.ObjectPooling.Scripts.ObjectPool
+namespace CustomTools.ObjectPooling
 {
     public class PooledObject : MonoBehaviour, IPooledObject
     {

@@ -1,13 +1,15 @@
-using CustomTools.ObjectPooling.Scripts.ObjectPool;
 using UnityEngine;
 using Zenject;
 
-public class DemoSceneInstaller : MonoInstaller
+namespace CustomTools.ObjectPooling.DEMO
 {
-    [SerializeField] private GameObject _objectPool;
-
-    public override void InstallBindings()
+    public class DemoSceneInstaller : MonoInstaller
     {
-        Container.Bind<ObjectPooler>().FromComponentOn(_objectPool).AsSingle().NonLazy();
+        [SerializeField] private GameObject _objectPool;
+
+        public override void InstallBindings()
+        {
+            Container.Bind<ObjectPooler>().FromComponentOn(_objectPool).AsSingle().NonLazy();
+        }
     }
 }

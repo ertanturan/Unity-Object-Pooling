@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-public class PoolObjects
+namespace CustomTools.ObjectPooling
 {
-    public PooledObjectType Tag;
-    public GameObject Prefab;
-    public int Size;
+    [System.Serializable]
+    public class PoolObjects
+    {
+        public PooledObjectType Tag;
+        public GameObject Prefab;
+        public int Size;
+    }
 }

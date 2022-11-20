@@ -1,5 +1,8 @@
-﻿public enum PooledObjectType
+﻿namespace CustomTools.ObjectPooling
 {
-Cube=0,
-Sphere=1
+    public enum PooledObjectType
+    {
+        Cube=0,
+        Sphere=1
+    }
 }
