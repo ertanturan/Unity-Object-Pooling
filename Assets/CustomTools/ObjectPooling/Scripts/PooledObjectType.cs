@@ -2,7 +2,7 @@
 {
     public enum PooledObjectType
     {
-        Cube=0,
-        Sphere=1
+        ThreeDDemo = 0,
+        UIDemo = 10
     }
 }
