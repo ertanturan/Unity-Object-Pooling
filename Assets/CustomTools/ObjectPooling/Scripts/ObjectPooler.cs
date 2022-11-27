@@ -59,8 +59,22 @@
             {
                 objToSpawn = _poolDictionary[pooledObjectType].Peek();
                 objToSpawn.SetActive(true);
-                objToSpawn.transform.position = position;
-                objToSpawn.transform.rotation = rotation;
+
+                if (parent)
+                {
+                    objToSpawn.transform.SetParent(parent);
+                }
+
+                RectTransform rect = objToSpawn.GetComponent<RectTransform>();
+                if (rect != null)
+                {
+                    rect.anchoredPosition = position;
+                }
+                else
+                {
+                    objToSpawn.transform.position = position;
+                    objToSpawn.transform.rotation = rotation;
+                }
 
                 IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
 
@@ -79,17 +93,6 @@
             else
             {
                 return ExpandAndSpawnFromPool(pooledObjectType, position, rotation, parent);
-            }
-
-            if (parent)
-            {
-                objToSpawn.transform.SetParent(parent);
-            }
-
-            RectTransform rect = objToSpawn.GetComponent<RectTransform>();
-            if (rect != null)
-            {
-                rect.anchoredPosition = Vector2.zero;
             }
 
 
