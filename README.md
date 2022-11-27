@@ -25,7 +25,7 @@ This pool creates objects that you defined on start and creates additionally if 
 
 #### Spawn
 ```csharp  
-ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , YourVector3PositionComesHere, YourQuaternionRotationComesHere,YourParentTransformComesHere(Optional),PooledObjectInitializationArgsComesHere(Optional));  
+ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , YourVector3PositionComesHere, YourQuaternionRotationComesHere,Optional_YourParentTransformComesHere,Optional_PooledObjectInitializationArgsComesHere);  
 ```
 #### Despawn
 
