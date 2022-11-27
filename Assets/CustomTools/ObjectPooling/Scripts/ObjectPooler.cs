@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-namespace CustomTools.ObjectPooling
+﻿namespace CustomTools.ObjectPooling
 {
+    using System.Collections.Generic;
+    using UnityEngine;
+
     public class ObjectPooler : MonoBehaviour
     {
         [SerializeField] private List<PoolObjects> _pool;
@@ -66,10 +66,11 @@ namespace CustomTools.ObjectPooling
 
                 IObjectPoolInitializable iInitializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
 
-                if (args != null)
+                if (args != null && iInitializable != null)
                 {
-                    iInitializable?.Init(this, args);
+                    iInitializable.Init(this, args);
                 }
+
 
                 iPooledObj.OnObjectSpawn();
 
