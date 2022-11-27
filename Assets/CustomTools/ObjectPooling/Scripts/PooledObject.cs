@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace CustomTools.ObjectPooling.Scripts.ObjectPool
+namespace CustomTools.ObjectPooling
 {
     public class PooledObject : MonoBehaviour, IPooledObject
     {
-
         public PooledObjectType PoolType { get; set; }
         public ObjectPooler Pooler { get; private set; }
 
@@ -14,22 +13,18 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
         {
             Pooler = pooler;
         }
-    
+
         public virtual void OnObjectSpawn()
         {
-
         }
 
         public virtual void OnObjectDespawn()
         {
-
         }
 
         public void Despawn()
         {
             Pooler.Despawn(gameObject);
         }
-
-
     }
 }

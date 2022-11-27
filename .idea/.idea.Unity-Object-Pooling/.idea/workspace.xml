@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/indexLayout.xml" afterDir="false" />
+    <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="upgraded unity version">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/ObjectPool.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/ObjectPool.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IObjectPoolInitializable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IObjectPoolInitializable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectPool.csproj.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectPool.csproj.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +69,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "rider.code.cleanup.on.save": "true",
     "rider.code.cleanup.on.save.profile": "CustomProfile_Ertan",
-    "settings.editor.selected.configurable": "diff.external"
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#"
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -108,6 +116,14 @@
       <workItem from="1610749987410" duration="3472000" />
       <workItem from="1610827375570" duration="3263000" />
     </task>
+    <task id="LOCAL-00001" summary="upgraded unity version">
+      <created>1669553262693</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669553262693</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -127,6 +143,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="upgraded unity version" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgraded unity version" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -135,37 +153,37 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs</url>
-          <line>31</line>
+          <line>29</line>
           <properties documentPath="C:\Users\ASUS\Desktop\Unity\Unity-Object-Pooling\Assets\CustomTools\ObjectPooling\DEMO\PoolSpawner.cs" initialLine="31" containingFunctionPresentation="method 'DespawnAnyCube'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs</url>
-          <line>34</line>
+          <line>31</line>
           <properties documentPath="C:\Users\ASUS\Desktop\Unity\Unity-Object-Pooling\Assets\CustomTools\ObjectPooling\DEMO\PoolSpawner.cs" initialLine="34" containingFunctionPresentation="method 'DespawnAnyCube'" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs</url>
-          <line>31</line>
+          <line>28</line>
           <properties documentPath="C:\Users\ASUS\Desktop\Unity\Unity-Object-Pooling\Assets\CustomTools\ObjectPooling\Scripts\ObjectPool\PooledObject.cs" initialLine="31" containingFunctionPresentation="method 'Despawn'" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs</url>
-          <line>32</line>
+          <line>30</line>
           <properties documentPath="C:\Users\ASUS\Desktop\Unity\Unity-Object-Pooling\Assets\CustomTools\ObjectPooling\DEMO\PoolSpawner.cs" initialLine="32" containingFunctionPresentation="method 'DespawnAnyCube'" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs</url>
-          <line>16</line>
+          <line>15</line>
           <properties documentPath="C:\Users\Ertan\Desktop\Unity\Unity-Object-Pooling\Assets\CustomTools\ObjectPooling\Scripts\ObjectPool\PooledObject.cs" initialLine="16" containingFunctionPresentation="method 'Construct'">
             <startOffsets>
-              <option value="402" />
+              <option value="378" />
             </startOffsets>
             <endOffsets>
-              <option value="418" />
+              <option value="394" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />

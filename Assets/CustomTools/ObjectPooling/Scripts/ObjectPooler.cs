@@ -1,39 +1,39 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace CustomTools.ObjectPooling.Scripts.ObjectPool
+namespace CustomTools.ObjectPooling
 {
     public class ObjectPooler : MonoBehaviour
     {
-        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
         [SerializeField] private List<PoolObjects> _pool;
+        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
 
-        private Dictionary<PooledObjectType, int> _poolIndexes = new Dictionary<PooledObjectType, int>();
-        private Dictionary<PooledObjectType, Transform> _poolMasters = new Dictionary<PooledObjectType, Transform>();
+        private readonly Dictionary<PooledObjectType, int> _poolIndexes = new();
+        private readonly Dictionary<PooledObjectType, Transform> _poolMasters = new();
 
         private void Start()
         {
             _poolDictionary = new Dictionary<PooledObjectType, Queue<GameObject>>();
 
-            GameObject master = new GameObject("Pool");
+            var master = new GameObject("Pool");
 
-            for (int j = 0; j < _pool.Count; j++)
+            for (var j = 0; j < _pool.Count; j++)
             {
-                GameObject poolSpecifiMaster = new GameObject(_pool[j].Tag.ToString());
+                var poolSpecifiMaster = new GameObject(_pool[j].Tag.ToString());
                 poolSpecifiMaster.transform.parent = master.transform;
 
-                Queue<GameObject> objectPool = new Queue<GameObject>();
+                var objectPool = new Queue<GameObject>();
                 _poolIndexes.Add(_pool[j].Tag, j);
 
                 _poolMasters.Add(_pool[j].Tag, poolSpecifiMaster.transform);
 
-                for (int i = 0; i < _pool[j].Size; i++)
+                for (var i = 0; i < _pool[j].Size; i++)
                 {
-                    GameObject obj = Instantiate(_pool[j].Prefab, poolSpecifiMaster.transform, true);
-                    IPooledObject iPool = obj.GetComponent<IPooledObject>();
+                    var obj = Instantiate(_pool[j].Prefab, poolSpecifiMaster.transform, true);
+                    var iPool = obj.GetComponent<IPooledObject>();
                     if (iPool == null)
                     {
-                        PooledObject temp = obj.AddComponent<PooledObject>();
+                        var temp = obj.AddComponent<PooledObject>();
                         iPool = temp;
                     }
 
@@ -66,8 +66,8 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
                 objToSpawn.transform.position = pos;
                 objToSpawn.transform.rotation = rot;
 
-                IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
-                IObjectPoolInitializable iInitializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
+                var iPooledObj = objToSpawn.GetComponent<IPooledObject>();
+                var iInitializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
 
                 iInitializable?.Init();
 
@@ -77,66 +77,56 @@ namespace CustomTools.ObjectPooling.Scripts.ObjectPool
                 _poolDictionary[pooledObjectType].Dequeue();
             }
             else
-            {
                 objToSpawn = ExpandPool(pooledObjectType, pos, rot);
-            }
 
-            if (parent)
-            {
-                objToSpawn.transform.SetParent(parent.transform);
-            }
+            if (parent) objToSpawn.transform.SetParent(parent.transform);
 
             return objToSpawn;
         }
 
         public void Despawn(GameObject obj)
         {
-            PooledObjectType pooledObjectType = obj.GetComponent<IPooledObject>().PoolType;
+            var pooledObjectType = obj.GetComponent<IPooledObject>().PoolType;
 
-            bool isThereAnyQueuedObjectByTheTag = _poolDictionary.ContainsKey(pooledObjectType);
+            var isThereAnyQueuedObjectByTheTag = _poolDictionary.ContainsKey(pooledObjectType);
 
-            bool isObjectAlreadyDespawned = _poolDictionary[pooledObjectType].Contains(gameObject);
+            var isObjectAlreadyDespawned = _poolDictionary[pooledObjectType].Contains(gameObject);
 
 
             if (isThereAnyQueuedObjectByTheTag && !isObjectAlreadyDespawned)
             {
                 _poolDictionary[pooledObjectType].Enqueue(obj);
 
-                IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
-                if (iPooledObj != null)
-                {
-                    iPooledObj.OnObjectDespawn();
-                }
+                var iPooledObj = obj.GetComponent<IPooledObject>();
+                if (iPooledObj != null) iPooledObj.OnObjectDespawn();
 
                 obj.transform.SetParent(_poolMasters[pooledObjectType]);
                 obj.SetActive(false);
             }
             else
-            {
                 Debug.LogError("Trying to despawn object which is not pooled or object is already despawned !");
-            }
         }
 
         private GameObject ExpandPool(PooledObjectType pooledObjectType, Vector3 pos, Quaternion rot)
         {
-            int index = _poolIndexes[pooledObjectType];
-            GameObject objToAdd = Instantiate(_pool[index].Prefab, _poolMasters[pooledObjectType], true);
+            var index = _poolIndexes[pooledObjectType];
+            var objToAdd = Instantiate(_pool[index].Prefab, _poolMasters[pooledObjectType], true);
             objToAdd.SetActive(true);
 
             objToAdd.transform.position = pos;
             objToAdd.transform.rotation = rot;
 
-            IPooledObject iPool = objToAdd.GetComponent<IPooledObject>();
+            var iPool = objToAdd.GetComponent<IPooledObject>();
             if (iPool == null)
             {
-                PooledObject tempPool = objToAdd.AddComponent<PooledObject>();
+                var tempPool = objToAdd.AddComponent<PooledObject>();
                 iPool = tempPool;
             }
 
             iPool.PoolType = pooledObjectType;
 
-            IPooledObject iPooledObj = objToAdd.GetComponent<IPooledObject>();
-            IObjectPoolInitializable iInitializable = objToAdd.GetComponent<IObjectPoolInitializable>();
+            var iPooledObj = objToAdd.GetComponent<IPooledObject>();
+            var iInitializable = objToAdd.GetComponent<IObjectPoolInitializable>();
 
             iInitializable?.Init();
 

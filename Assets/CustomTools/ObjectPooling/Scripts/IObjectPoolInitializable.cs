@@ -1,4 +1,4 @@
-﻿namespace CustomTools.ObjectPooling.Scripts.ObjectPool
+﻿namespace CustomTools.ObjectPooling
 {
     public interface IObjectPoolInitializable
     {
