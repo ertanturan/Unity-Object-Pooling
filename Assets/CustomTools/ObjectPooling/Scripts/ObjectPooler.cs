@@ -64,11 +64,11 @@
 
                 IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
 
-                IObjectPoolInitializable iInitializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
+                IObjectPoolInitializable initializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
 
-                if (args != null && iInitializable != null)
+                if (args != null && initializable != null)
                 {
-                    iInitializable.Init(this, args);
+                    initializable.Init(this, args);
                 }
 
 
@@ -85,6 +85,13 @@
             {
                 objToSpawn.transform.SetParent(parent);
             }
+
+            RectTransform rect = objToSpawn.GetComponent<RectTransform>();
+            if (rect != null)
+            {
+                rect.anchoredPosition = Vector2.zero;
+            }
+
 
             return objToSpawn;
         }
