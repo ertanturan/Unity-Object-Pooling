@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CustomTools.ObjectPooling.csproj.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/ObjectPoolingDemo.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/ObjectPoolingDemo.asmdef" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Sprint4-Code-Simplification" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,8 +31,14 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectInitializationArgs.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjectInitializationArgs.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
