@@ -4,19 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="upgraded unity version">
+    <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="fixed asmdef problems and edited namespace">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/ObjectPool.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/ObjectPool.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IObjectPoolInitializable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IObjectPoolInitializable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/IPooledObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/ObjectPooler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjectType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPool/PooledObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/IObjectPoolInitializable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/IObjectPoolInitializable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/IPooledObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/IPooledObject.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObject.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjectType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjectType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjects.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjects.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ObjectPool.csproj.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectPool.csproj.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +40,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/Event/PooledObjectInitializationEventArgs.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -123,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669553262693</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed asmdef problems and edited namespace">
+      <created>1669554206936</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669554206936</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -144,7 +154,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="upgraded unity version" />
-    <option name="LAST_COMMIT_MESSAGE" value="upgraded unity version" />
+    <MESSAGE value="fixed asmdef problems and edited namespace" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed asmdef problems and edited namespace" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

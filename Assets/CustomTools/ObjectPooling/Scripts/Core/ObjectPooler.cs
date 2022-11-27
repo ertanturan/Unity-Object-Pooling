@@ -6,10 +6,10 @@ namespace CustomTools.ObjectPooling
     public class ObjectPooler : MonoBehaviour
     {
         [SerializeField] private List<PoolObjects> _pool;
-        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
 
         private readonly Dictionary<PooledObjectType, int> _poolIndexes = new();
         private readonly Dictionary<PooledObjectType, Transform> _poolMasters = new();
+        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
 
         private void Start()
         {
@@ -19,17 +19,17 @@ namespace CustomTools.ObjectPooling
 
             for (var j = 0; j < _pool.Count; j++)
             {
-                var poolSpecifiMaster = new GameObject(_pool[j].Tag.ToString());
-                poolSpecifiMaster.transform.parent = master.transform;
+                var poolSpecificMaster = new GameObject(_pool[j].Tag.ToString());
+                poolSpecificMaster.transform.parent = master.transform;
 
                 var objectPool = new Queue<GameObject>();
                 _poolIndexes.Add(_pool[j].Tag, j);
 
-                _poolMasters.Add(_pool[j].Tag, poolSpecifiMaster.transform);
+                _poolMasters.Add(_pool[j].Tag, poolSpecificMaster.transform);
 
                 for (var i = 0; i < _pool[j].Size; i++)
                 {
-                    var obj = Instantiate(_pool[j].Prefab, poolSpecifiMaster.transform, true);
+                    var obj = Instantiate(_pool[j].Prefab, poolSpecificMaster.transform, true);
                     var iPool = obj.GetComponent<IPooledObject>();
                     if (iPool == null)
                     {
@@ -49,11 +49,11 @@ namespace CustomTools.ObjectPooling
         }
 
         public GameObject SpawnFromPool(PooledObjectType pooledObjectType, Vector3 pos, Quaternion rot,
-            GameObject parent = null)
+            GameObject parent = null, PooledObjectInitializationEventArgs initializationEventArgs = null)
         {
             if (!_poolDictionary.ContainsKey(pooledObjectType))
             {
-                Debug.LogWarning("PoolObjects with Tag " + pooledObjectType + " doesn't exist ..");
+                Debug.LogWarning(string.Concat("PoolObjects with Tag ", pooledObjectType, " doesn't exist .."));
                 return null;
             }
 
@@ -69,7 +69,7 @@ namespace CustomTools.ObjectPooling
                 var iPooledObj = objToSpawn.GetComponent<IPooledObject>();
                 var iInitializable = objToSpawn.GetComponent<IObjectPoolInitializable>();
 
-                iInitializable?.Init();
+                iInitializable?.Init(this, initializationEventArgs);
 
                 // iPooledObj.Init(iPooledObj.ObjectPooler);
                 iPooledObj.OnObjectSpawn();
