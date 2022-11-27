@@ -6,9 +6,6 @@ This pool creates objects that you defined on start and creates additionally if 
 
 - Zenject IOC (Find [HERE](https://github.com/modesttree/Zenject)  )
 
-## Singleton Version (Version Without Zenject)
-[Here](https://github.com/ertanturan/Unity-Object-Pooling/tree/Sprint3-Singleton)
-
 ## Import
 
 1. Go to [release](https://github.com/ertanturan/UnityObjectPooling/releases) page.
@@ -17,23 +14,18 @@ This pool creates objects that you defined on start and creates additionally if 
 
 ## Usage
 
-1. Head to your `hierarchy >> Right Click >> Create Empty`
-2. Add Component >> Object Pooler >> Set size that you wish to add to your project.
-3. Create Script which inherits from IPooledObject interface 
-
-```csharp 
-public Class ExampleClass : MonoBehaviour,IPooledObject 
-```
-
-4. Add a new type to `enum PooledObjectType` (Can be found under `Assets/Scripts/ObjectPool/PooledObjectType.cs`)
-5. Retrun to the game object you created on hierarchy  drag and drop your prefab to Prefab property on objectpooler's pool . Set the tag you wrote on step 4. set size (How many object you want to create on beginning).
+1. Add ObjectPooler component to an object
+2. Set a size for the pool.
+3. Create prefabs to pool 
+4. Edit PooledObjectType.cs class according to your prefabs which you want to pool
+5. Go to the scene object with ObjectPooler component and assign prefabs and enums and set size for each pooled object.
 6. Ready to go !
 
 ### To Spawn and Despawn
 
 #### Spawn
 ```csharp  
-ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , transform.position, Random.rotation);  
+ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , YourVector3PositionComesHere, YourQuaternionRotationComesHere,YourParentTransformComesHere(Optional),PooledObjectInitializationArgsComesHere(Optional));  
 ```
 #### Despawn
 
