@@ -1,6 +1,7 @@
 ﻿namespace CustomTools.ObjectPooling
 {
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
     public class ObjectPooler : MonoBehaviour
@@ -9,11 +10,14 @@
 
         private readonly Dictionary<PooledObjectType, int> _poolIndexes = new();
         private readonly Dictionary<PooledObjectType, Transform> _poolMasters = new();
-        private Dictionary<PooledObjectType, Queue<GameObject>> _poolDictionary;
+        private Dictionary<PooledObjectType, Queue<GameObject>> _despawnQueue;
+
+        private Dictionary<PooledObjectType, Queue<GameObject>> _spawnQueue;
 
         private void Start()
         {
-            _poolDictionary = new Dictionary<PooledObjectType, Queue<GameObject>>();
+            _spawnQueue = new Dictionary<PooledObjectType, Queue<GameObject>>();
+            _despawnQueue = new Dictionary<PooledObjectType, Queue<GameObject>>();
 
             GameObject master = new("Pool");
 
@@ -22,11 +26,12 @@
                 GameObject poolSpecifiMaster = new(_pool[j].Tag.ToString());
                 poolSpecifiMaster.transform.parent = master.transform;
 
-                Queue<GameObject> objectPool = new();
                 _poolIndexes.Add(_pool[j].Tag, j);
 
                 _poolMasters.Add(_pool[j].Tag, poolSpecifiMaster.transform);
-                _poolDictionary.Add(_pool[j].Tag, objectPool);
+                _spawnQueue.Add(_pool[j].Tag, new Queue<GameObject>());
+                _despawnQueue.Add(_pool[j].Tag, new Queue<GameObject>());
+
 
                 for (int i = 0; i < _pool[j].Size; i++)
                 {
@@ -39,41 +44,42 @@
         ///     Spawns a gameobject from pool if there's any. If not, it'll expand the pool size and then spawn.
         /// </summary>
         /// <param name="pooledObjectType"></param>
-        /// <param name="position"></param>
-        /// <param name="rotation"></param>
-        /// <param name="parent"></param>
+        /// <param name="targetPosition"></param>
+        /// <param name="targetRotation"></param>
+        /// <param name="targetParent"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public GameObject SpawnFromPool(PooledObjectType pooledObjectType, Vector3 position, Quaternion rotation,
-            Transform parent = null, PooledObjectInitializationArgs args = null)
+        public GameObject SpawnFromPool(PooledObjectType pooledObjectType, Vector3 targetPosition,
+            Quaternion targetRotation,
+            Transform targetParent = null, PooledObjectInitializationArgs args = null)
         {
-            if (!_poolDictionary.ContainsKey(pooledObjectType))
+            if (!_spawnQueue.ContainsKey(pooledObjectType))
             {
                 Debug.LogWarning(string.Concat("PoolObjects with Tag ", pooledObjectType, " doesn't exist .."));
                 return null;
             }
 
             GameObject objToSpawn;
-
-            if (_poolDictionary[pooledObjectType].Count != 0)
+            bool isThereAnySpawnableObjectInTheQueue = _spawnQueue[pooledObjectType].Count != 0;
+            if (isThereAnySpawnableObjectInTheQueue)
             {
-                objToSpawn = _poolDictionary[pooledObjectType].Peek();
+                objToSpawn = _spawnQueue[pooledObjectType].Peek();
                 objToSpawn.SetActive(true);
 
-                if (parent)
+                if (targetParent)
                 {
-                    objToSpawn.transform.SetParent(parent);
+                    objToSpawn.transform.SetParent(targetParent);
                 }
 
                 RectTransform rect = objToSpawn.GetComponent<RectTransform>();
                 if (rect != null)
                 {
-                    rect.anchoredPosition = position;
+                    rect.anchoredPosition = targetPosition;
                 }
                 else
                 {
-                    objToSpawn.transform.position = position;
-                    objToSpawn.transform.rotation = rotation;
+                    objToSpawn.transform.position = targetPosition;
+                    objToSpawn.transform.rotation = targetRotation;
                 }
 
                 IPooledObject iPooledObj = objToSpawn.GetComponent<IPooledObject>();
@@ -88,11 +94,25 @@
 
                 iPooledObj.OnObjectSpawn();
 
-                _poolDictionary[pooledObjectType].Dequeue();
+                _spawnQueue[pooledObjectType].Dequeue();
+                _despawnQueue[pooledObjectType].Enqueue(objToSpawn);
             }
             else
             {
-                return ExpandAndSpawnFromPool(pooledObjectType, position, rotation, parent);
+                int index = _poolIndexes[pooledObjectType];
+
+                //if object is set as expandable then expand the pool.
+                if (_pool[index].IsExpandable)
+                {
+                    return ExpandAndSpawnFromPool(pooledObjectType, targetPosition, targetRotation, targetParent);
+                }
+
+                //if pool is not expandable then de-queue one from the scene and spawn it to the location where user wants it. 
+                // so this way we can keep the size of the pool for that type unchanged.
+                GameObject spawnedObjectOnTheLine = _despawnQueue[pooledObjectType].First();
+                Despawn(spawnedObjectOnTheLine);
+
+                return SpawnFromPool(pooledObjectType, targetPosition, targetRotation, targetParent, args);
             }
 
 
@@ -111,9 +131,10 @@
         private GameObject ExpandAndSpawnFromPool(PooledObjectType pooledObjectType, Vector3 position,
             Quaternion rotation, Transform parent = null)
         {
+            int index = _poolIndexes[pooledObjectType];
+
             AddNewInstanceToObjectPool(pooledObjectType);
 
-            int index = _poolIndexes[pooledObjectType];
 
             _pool[index].Size++;
             return SpawnFromPool(pooledObjectType, position, rotation, parent);
@@ -127,15 +148,15 @@
         {
             PooledObjectType pooledObjectType = obj.GetComponent<IPooledObject>().PoolType;
 
-            bool isThereAnyQueuedObjectByTheTag = _poolDictionary.ContainsKey(pooledObjectType);
+            bool isThereAnyQueuedObjectByTheTag = _spawnQueue.ContainsKey(pooledObjectType);
 
-            bool isObjectAlreadyDespawned = _poolDictionary[pooledObjectType].Contains(gameObject);
+            bool isObjectAlreadyDespawned = _spawnQueue[pooledObjectType].Contains(gameObject);
 
 
             if (isThereAnyQueuedObjectByTheTag && !isObjectAlreadyDespawned)
             {
-                _poolDictionary[pooledObjectType].Enqueue(obj);
-
+                _spawnQueue[pooledObjectType].Enqueue(obj);
+                _despawnQueue[pooledObjectType].Dequeue();
                 IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
                 if (iPooledObj != null)
                 {
@@ -151,18 +172,18 @@
             }
         }
 
-
         /// <summary>
-        ///     Creates  a new gameobject and registers it to the pool
+        ///     Creates  a new game object and registers it to the pool
         /// </summary>
         /// <param name="pooledObjectType"></param>
         private void AddNewInstanceToObjectPool(PooledObjectType pooledObjectType)
         {
-            Queue<GameObject> objectPool = _poolDictionary[pooledObjectType];
+            Queue<GameObject> objectPool = _spawnQueue[pooledObjectType];
 
             Transform poolSpecifiMaster = _poolMasters[pooledObjectType];
             int index = _poolIndexes[pooledObjectType];
-            GameObject prefab = _pool[index].Prefab;
+            PoolObjects pooledObject = _pool[index];
+            GameObject prefab = pooledObject.Prefab;
 
             GameObject freshGameObject = Instantiate(prefab, poolSpecifiMaster, true);
             IPooledObject iPool = freshGameObject.GetComponent<IPooledObject>();
@@ -173,7 +194,6 @@
             }
 
             iPool.PoolType = pooledObjectType;
-
 
             freshGameObject.SetActive(false);
             objectPool.Enqueue(freshGameObject);

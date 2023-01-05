@@ -4,20 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="added tmp package">
-      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/Button - Pool Demo Button.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/Button - Pool Demo Button.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneSettings.lighting" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneSettings.lighting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/PoolSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjectType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjectType.cs" afterDir="false" />
+    <list default="true" id="11ed4d23-6178-4fe3-8e8f-8aca75161bf2" name="Default Changelist" comment="tracking all pooled objects">
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/Cube.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/Cube.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/Demo.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/Demo.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/DemoSceneInstaller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/DemoSceneInstaller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/spawnerDemo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CustomTools/Demo/spawnerDemo.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Object-Pooling/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -27,6 +35,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
       <filtered-out-file-type name="LOCAL_BRANCH" />
@@ -35,18 +48,18 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="3947b566-59e0-4cea-a0eb-72ddc0f16418" />
+        <option name="url" value="https://github.com/ertanturan/Unity-Object-Pooling.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/DEMO/DemoSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/IObjectPoolInitializable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/IObjectPoolInitializable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/Demo/DemoSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CustomTools/Demo/spawnerDemo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/ertan/Desktop/Unity/Unity-Object-Pooling/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PoolObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/PooledObjectInitializationArgs.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -64,6 +77,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectId" id="1n7nQBBvwwx67fD1EjwtRak8jlq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -72,27 +86,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "rider.code.cleanup.on.save": "true",
-    "rider.code.cleanup.on.save.profile": "CustomProfile_Ertan",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;rider.code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;rider.code.cleanup.on.save.profile&quot;: &quot;CustomProfile_Ertan&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\ertan\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\ertan\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\ertan\\AppData\\Local\\Symbols\\src&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\ertan\Desktop\Unity\Unity-Object-Pooling -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\ertan\Desktop\Unity\Unity-Object-Pooling" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.14f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\ertan\Desktop\Unity\Unity-Object-Pooling -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\ertan\Desktop\Unity\Unity-Object-Pooling" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -131,6 +160,9 @@
       <workItem from="1610749987410" duration="3472000" />
       <workItem from="1610827375570" duration="3263000" />
       <workItem from="1668900229436" duration="4113000" />
+      <workItem from="1672957488044" duration="2797000" />
+      <workItem from="1672960836248" duration="71000" />
+      <workItem from="1672960916345" duration="1408000" />
     </task>
     <task id="LOCAL-00001" summary="Unity version upgraded from 2019.4.16f1 to 2021.3.14f1">
       <created>1668900507244</created>
@@ -160,7 +192,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669558476250</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Unity version upgraded to 2021.3.16f1  from 2021.3.14f1">
+      <created>1672959227342</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672959227342</updated>
+    </task>
+    <task id="LOCAL-00006" summary="tracking all pooled objects">
+      <created>1672961267296</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672961267296</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +218,7 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
-        <entry key="MAIN">
+        <entry key="03e8a86b-6f08-4739-b9e5-1bf1ecfdeee2">
           <value>
             <State>
               <option name="FILTERS">
@@ -180,7 +226,29 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Sprint3-Singleton" />
+                        <option value="Feature-Limited-Spawns" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Sprint2-Dependency-Injection" />
                       </list>
                     </value>
                   </entry>
@@ -219,7 +287,41 @@
     <MESSAGE value="asmdef updates" />
     <MESSAGE value="added init event" />
     <MESSAGE value="added tmp package" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tmp package" />
+    <MESSAGE value="Unity version upgraded to 2021.3.16f1  from 2021.3.14f1" />
+    <MESSAGE value="tracking all pooled objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="tracking all pooled objects" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/CustomTools/Demo/spawnerDemo.cs</url>
+          <line>11</line>
+          <properties documentPath="C:\Users\ertan\Desktop\Unity\Unity-Object-Pooling\Assets\CustomTools\Demo\spawnerDemo.cs" initialLine="11" containingFunctionPresentation="method 'Spawn'">
+            <startOffsets>
+              <option value="226" />
+            </startOffsets>
+            <endOffsets>
+              <option value="323" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/CustomTools/ObjectPooling/Scripts/ObjectPooler.cs</url>
+          <line>32</line>
+          <properties documentPath="C:\Users\ertan\Desktop\Unity\Unity-Object-Pooling\Assets\CustomTools\ObjectPooling\Scripts\ObjectPooler.cs" initialLine="31" containingFunctionPresentation="method 'Start'">
+            <startOffsets>
+              <option value="1240" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1297" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
