@@ -46,9 +46,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-## Acknowledgement/Courtesy
+## Credits
 
-This project uses Zenject framework for Dependency Injection. Courtesy to Modesttree. [REFERENCE LINK](https://github.com/modesttree/Zenject)
+- [Zenject](https://github.com/modesttree/Zenject) - used for dependency injection
+
+We would like to extend a special thank you to the creators and maintainers of Zenject for their excellent work on this dependency injection framework. Their contributions have greatly improved the functionality and usability of our project.
 
 
 # ENJOY !
