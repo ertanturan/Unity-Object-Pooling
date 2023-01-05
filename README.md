@@ -2,7 +2,7 @@
 
 This pool creates objects that you defined on start and creates additionally if more spawn request comes to the pool than pools capacity and manages newly added pool objects too ! .
 
-## Pre-requisities (For Zenject Implemented Version)
+## Pre-requisit(s)
 
 - Zenject IOC (Find [HERE](https://github.com/modesttree/Zenject)  )
 
