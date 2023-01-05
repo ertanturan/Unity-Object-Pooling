@@ -23,14 +23,21 @@ This pool creates objects that you defined on start and creates additionally if 
 
 ### To Spawn and Despawn
 
+#### Inject the pooler to your script
+(This part assumes you've set-up your zenject installer and contexts)
+
+```csharp 
+[Inject]
+private ObjectPooler _pooler;
+```
 #### Spawn
 ```csharp  
-ObjectPooler.Instance.SpawnFromPool(PooledObjectType.YourTypeComesHere , YourVector3PositionComesHere, YourQuaternionRotationComesHere,Optional_YourParentTransformComesHere,Optional_PooledObjectInitializationArgsComesHere);  
+_pooler.SpawnFromPool(PooledObjectType.YourTypeComesHere , YourVector3PositionComesHere, YourQuaternionRotationComesHere,Optional_YourParentTransformComesHere,Optional_PooledObjectInitializationArgsComesHere);  
 ```
 #### Despawn
 
 ```csharp 
-ObjectPooler.Instance.Despawn(gameObject); 
+_pooler.Despawn(gameObject); 
 ```
 
 
