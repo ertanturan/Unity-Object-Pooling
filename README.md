@@ -50,7 +50,7 @@ Please make sure to update tests as appropriate.
 
 - [Zenject](https://github.com/modesttree/Zenject) - used for dependency injection
 
-We would like to extend a special thank you to the creators and maintainers of Zenject for their excellent work on this dependency injection framework. Their contributions have greatly improved the functionality and usability of our project.
+I would like to extend a special thank you to the creators and maintainers of Zenject for their excellent work on this dependency injection framework. Their contributions have greatly improved the functionality and usability of this project.
 
 
 # ENJOY !
