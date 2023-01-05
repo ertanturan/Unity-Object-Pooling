@@ -10,13 +10,14 @@
 
         private readonly Dictionary<PooledObjectType, int> _poolIndexes = new();
         private readonly Dictionary<PooledObjectType, Transform> _poolMasters = new();
+        private Dictionary<PooledObjectType, Queue<GameObject>> _despawnQueue;
 
-        private Dictionary<PooledObjectType, List<GameObject>> _allPooledObjects;
-        private Dictionary<PooledObjectType, Queue<GameObject>> _poolQueue;
+        private Dictionary<PooledObjectType, Queue<GameObject>> _spawnQueue;
 
         private void Start()
         {
-            _poolQueue = new Dictionary<PooledObjectType, Queue<GameObject>>();
+            _spawnQueue = new Dictionary<PooledObjectType, Queue<GameObject>>();
+            _despawnQueue = new Dictionary<PooledObjectType, Queue<GameObject>>();
 
             GameObject master = new("Pool");
 
@@ -25,11 +26,12 @@
                 GameObject poolSpecifiMaster = new(_pool[j].Tag.ToString());
                 poolSpecifiMaster.transform.parent = master.transform;
 
-                Queue<GameObject> objectPool = new();
                 _poolIndexes.Add(_pool[j].Tag, j);
 
                 _poolMasters.Add(_pool[j].Tag, poolSpecifiMaster.transform);
-                _poolQueue.Add(_pool[j].Tag, objectPool);
+                _spawnQueue.Add(_pool[j].Tag, new Queue<GameObject>());
+                _despawnQueue.Add(_pool[j].Tag, new Queue<GameObject>());
+
 
                 for (int i = 0; i < _pool[j].Size; i++)
                 {
@@ -51,17 +53,17 @@
             Quaternion targetRotation,
             Transform targetParent = null, PooledObjectInitializationArgs args = null)
         {
-            if (!_poolQueue.ContainsKey(pooledObjectType))
+            if (!_spawnQueue.ContainsKey(pooledObjectType))
             {
                 Debug.LogWarning(string.Concat("PoolObjects with Tag ", pooledObjectType, " doesn't exist .."));
                 return null;
             }
 
             GameObject objToSpawn;
-
-            if (_poolQueue[pooledObjectType].Count != 0)
+            bool isThereAnySpawnableObjectInTheQueue = _spawnQueue[pooledObjectType].Count != 0;
+            if (isThereAnySpawnableObjectInTheQueue)
             {
-                objToSpawn = _poolQueue[pooledObjectType].Peek();
+                objToSpawn = _spawnQueue[pooledObjectType].Peek();
                 objToSpawn.SetActive(true);
 
                 if (targetParent)
@@ -92,7 +94,8 @@
 
                 iPooledObj.OnObjectSpawn();
 
-                _poolQueue[pooledObjectType].Dequeue();
+                _spawnQueue[pooledObjectType].Dequeue();
+                _despawnQueue[pooledObjectType].Enqueue(objToSpawn);
             }
             else
             {
@@ -106,7 +109,9 @@
 
                 //if pool is not expandable then de-queue one from the scene and spawn it to the location where user wants it. 
                 // so this way we can keep the size of the pool for that type unchanged.
-                Despawn(_poolQueue[pooledObjectType].First().gameObject);
+                GameObject spawnedObjectOnTheLine = _despawnQueue[pooledObjectType].First();
+                Despawn(spawnedObjectOnTheLine);
+
                 return SpawnFromPool(pooledObjectType, targetPosition, targetRotation, targetParent, args);
             }
 
@@ -143,15 +148,15 @@
         {
             PooledObjectType pooledObjectType = obj.GetComponent<IPooledObject>().PoolType;
 
-            bool isThereAnyQueuedObjectByTheTag = _poolQueue.ContainsKey(pooledObjectType);
+            bool isThereAnyQueuedObjectByTheTag = _spawnQueue.ContainsKey(pooledObjectType);
 
-            bool isObjectAlreadyDespawned = _poolQueue[pooledObjectType].Contains(gameObject);
+            bool isObjectAlreadyDespawned = _spawnQueue[pooledObjectType].Contains(gameObject);
 
 
             if (isThereAnyQueuedObjectByTheTag && !isObjectAlreadyDespawned)
             {
-                _poolQueue[pooledObjectType].Enqueue(obj);
-
+                _spawnQueue[pooledObjectType].Enqueue(obj);
+                _despawnQueue[pooledObjectType].Dequeue();
                 IPooledObject iPooledObj = obj.GetComponent<IPooledObject>();
                 if (iPooledObj != null)
                 {
@@ -173,7 +178,7 @@
         /// <param name="pooledObjectType"></param>
         private void AddNewInstanceToObjectPool(PooledObjectType pooledObjectType)
         {
-            Queue<GameObject> objectPool = _poolQueue[pooledObjectType];
+            Queue<GameObject> objectPool = _spawnQueue[pooledObjectType];
 
             Transform poolSpecifiMaster = _poolMasters[pooledObjectType];
             int index = _poolIndexes[pooledObjectType];
@@ -189,13 +194,6 @@
             }
 
             iPool.PoolType = pooledObjectType;
-
-            if (!_allPooledObjects.ContainsKey(pooledObjectType))
-            {
-                _allPooledObjects.Add(pooledObjectType, new List<GameObject>(pooledObject.Size));
-            }
-
-            _allPooledObjects[pooledObjectType].Add(freshGameObject);
 
             freshGameObject.SetActive(false);
             objectPool.Enqueue(freshGameObject);
